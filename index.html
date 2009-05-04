@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <title>untitled</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    query = encodeURIComponent('#techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time"');
+    var tweets = [];
+    
+    // since_id
+    var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=10&callback=?'; 
+    $.getJSON(url, function(data) {
+      tweets.concat(data.results);
+      $.each(data.results, function() {
+        $('#tweets').append('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>');
+       }); 
+     });  
+  </script>
+  <style type="text/css">
+    body {
+      font-family: Helvetica;
+      font-size: 2em;
+      background-color: #000;
+      color: #CCC;
+    }
+    #tweets {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    #tweets li {
+      margin-bottom: 1em;
+      padding-left: 120px;
+    }
+    
+    #tweets li .profile {
+      position: absolute;
+      left: 50px;
+      border: 3px solid #EEE;
+      margin-top: 10px;
+    }
+    #tweets li .from {
+      color: orange;
+      font-size: 0.5em;
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="tweets">
+
+  </ul>
+</body>
+</html>
