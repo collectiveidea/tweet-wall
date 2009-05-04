@@ -1,3 +1,0 @@
-[submodule "javascripts/jquery-scrollbox"]
-	path = javascripts/jquery-scrollbox
-	url = git://github.com/jrallison/jquery-scrollbox-js.git

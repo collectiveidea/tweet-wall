@@ -10,19 +10,19 @@
       $('#tweets').scrollbox( {  speed: 7000 } );
   
       query = encodeURIComponent('#techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time"');
-      var tweets = [];
+      // var tweets = [];
     
       // since_id
       var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
       function fetchTweets() {
-        $.getJSON(url, function(data) {
-          tweets.concat(data.results);
-          $.each(data.results, function() {
-            $('#tweets').scrollbox.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'));
-            // $('#tweets').append('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>');
-           }); 
-         });
-         window.setTimeout(fetchTweets, 60000);
+        if ($('#tweets').scrollbox.size() < 10) {
+          $.getJSON(url, function(data) {
+            $.each(data.results, function() {
+              $('#tweets').scrollbox.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'));
+             }); 
+           });
+        }
+        window.setTimeout(fetchTweets, 60000);
       }
               
       fetchTweets();
