@@ -7,7 +7,7 @@
   <script src="./javascripts/jquery-scrollbox/jquery.scrollbox.js"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready( function () {
-      $('#tweets').scrollbox( { maxsize: 2, speed: 2000 } );
+      $('#tweets').scrollbox( {  speed: 5000 } );
   
       query = encodeURIComponent('#techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time"');
       var tweets = [];
@@ -30,15 +30,29 @@
       background-color: #000;
       color: #CCC;
     }
+    header {
+      display: fixed;
+      top: 0;
+      width: 100%;
+      color: orange;
+      text-align: center;
+      }
+      header h1 {
+        font-size: 30pt;
+      }
+    
     #tweets {
       list-style: none;
       margin: 0;
       padding: 0;
+      height: 100%;
+      width: 100%;
     }
     #tweets li {
       overflow: hidden;
       margin-bottom: 1em;
       padding-left: 120px;
+      color: #fff;
     }
     
     #tweets li .profile {
@@ -51,12 +65,16 @@
     }
     #tweets li .from {
       color: orange;
+      font-weight: bold;
       font-size: 0.5em;
     }
   </style>
 </head>
 
 <body>  
+  <header>
+    <h1>Tech Embassy &amp; Tulip Time on <img src="http://assets0.twitter.com/images/twitter_logo_header.png" alt="Twitter"></h1>
+  </header>
   <ul id="tweets">
 
   </ul>
