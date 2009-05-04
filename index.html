@@ -7,13 +7,13 @@
   <script src="./javascripts/jquery-scrollbox/jquery.scrollbox.js"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready( function () {
-      $('#tweets').scrollbox( {  speed: 5000 } );
+      $('#tweets').scrollbox( {  speed: 7000 } );
   
       query = encodeURIComponent('#techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time"');
       var tweets = [];
     
       // since_id
-      var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
+      var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=20&callback=?'; 
       function fetchTweets() {
         $.getJSON(url, function(data) {
           tweets.concat(data.results);
@@ -22,10 +22,9 @@
             // $('#tweets').append('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>');
            }); 
          });
+         window.setTimeout(fetchTweets, 60000);
        }
-       
-       window.setTimeout(fetchTweets, 60000);
-       
+              
        fetchTweets();
      });  
   </script>
