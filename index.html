@@ -13,7 +13,7 @@
       var tweets = [];
     
       // since_id
-      var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=20&callback=?'; 
+      var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
       function fetchTweets() {
         $.getJSON(url, function(data) {
           tweets.concat(data.results);
@@ -23,10 +23,10 @@
            }); 
          });
          window.setTimeout(fetchTweets, 60000);
-       }
+      }
               
-       fetchTweets();
-     });  
+      fetchTweets();
+    });  
   </script>
   <style type="text/css">
     body {
@@ -36,7 +36,6 @@
       color: #CCC;
     }
     header {
-      display: fixed;
       top: 0;
       width: 100%;
       color: orange;
