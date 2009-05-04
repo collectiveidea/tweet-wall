@@ -1,23 +1,26 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-  <title>untitled</title>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <title>Tech Embassy</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+  <script src="./javascripts/jquery-scrollbox/jquery.scrollbox.js"></script>
   <script type="text/javascript" charset="utf-8">
-    query = encodeURIComponent('#techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time"');
-    var tweets = [];
+    $(document).ready( function () {
+      $('#tweets').scrollbox( { maxsize: 2, speed: 2000 } );
+  
+      query = encodeURIComponent('#techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time"');
+      var tweets = [];
     
-    // since_id
-    var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
-    $.getJSON(url, function(data) {
-      tweets.concat(data.results);
-      $.each(data.results, function() {
-        $('#tweets').append('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>');
-       }); 
+      // since_id
+      var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
+      $.getJSON(url, function(data) {
+        tweets.concat(data.results);
+        $.each(data.results, function() {
+          $('#tweets').scrollbox.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'));
+          // $('#tweets').append('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>');
+         }); 
+       });
      });  
   </script>
   <style type="text/css">
@@ -53,7 +56,7 @@
   </style>
 </head>
 
-<body>
+<body>  
   <ul id="tweets">
 
   </ul>
