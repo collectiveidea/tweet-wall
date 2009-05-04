@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title>jQuery.scrollbox.js - Demo.</title>
+    
+    <script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+    <script src="jquery.scrollbox.js" type="text/javascript"></script>
+    
+    <style type="text/css">
+    	body {
+    		margin:0px;
+    		padding:0px 20px;
+    	}
+    	#scrollbox {
+    		height:400px;
+    		width:200px;
+    		border:1px solid black;
+    	}
+    	#scrollbox li {
+    		/* Style the list items however you wish */
+    	}
+    </style>
+    <script type="text/javascript">
+    	/* <![CDATA[ */
+    	j$ = jQuery.noConflict();
+    	
+    	j$(document).ready( function () {
+    		j$('#scrollbox').scrollbox();
+    		// j$('#scrollbox').scrollbox( { maxsize: 2, speed: 2000 } ); // Possible options
+    		
+    		j$('#scrollbox').scrollbox.push( j$('<li>Testing</li>') );
+    		j$('#scrollbox').scrollbox.push( j$('<li>the</li>') );
+    		j$('#scrollbox').scrollbox.push( j$('<li>scroll</li>') );
+    		j$('#scrollbox').scrollbox.push( j$('<li>box.</li>') );
+    		j$('#scrollbox').scrollbox.pop();
+    		j$('#scrollbox').scrollbox.pop();
+			j$('#scrollbox').scrollbox.pop();
+			j$('#scrollbox').scrollbox.pop();
+    	});
+    	/* ]]> */
+    </script>
+  </head>
+  
+  <body>
+  
+  	<h1>Scrollbox</h1>
+  	
+  	<!-- can provide simply a div or a div with a list as a child (<div><ul></ul></div>) 
+  	     the plugin will modify certain CSS attributes of the div and the list 
+  	     in order for the animation to work correctly:
+  	     	The div's position and overflow
+  	     	The list's position, margin, and padding -->
+  	<div id="scrollbox"></div>
+  
+  </body>
+
+</html>
