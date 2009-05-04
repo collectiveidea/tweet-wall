@@ -12,7 +12,7 @@
     var tweets = [];
     
     // since_id
-    var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=10&callback=?'; 
+    var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
     $.getJSON(url, function(data) {
       tweets.concat(data.results);
       $.each(data.results, function() {
@@ -33,6 +33,7 @@
       padding: 0;
     }
     #tweets li {
+      overflow: hidden;
       margin-bottom: 1em;
       padding-left: 120px;
     }
@@ -40,8 +41,10 @@
     #tweets li .profile {
       position: absolute;
       left: 50px;
-      border: 3px solid #EEE;
+      border: 3px solid #555;
       margin-top: 10px;
+      width: 50px;
+      height: 50px;
     }
     #tweets li .from {
       color: orange;
