@@ -44,18 +44,18 @@
              }); 
            });
         }
-        // window.setTimeout(fetchTweets, 60000);
+        window.setTimeout(fetchTweets, 60000);
       }
       
       function fetchFlicks() {
         if ($('#flickr li:hidden').size() < 10) {
         $.getJSON("http://api.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&jsoncallback=jsonFlickrApi")
         }
-        // window.setTimeout(fetchFlicks, 120000);        
+        window.setTimeout(fetchFlicks, 120000);        
       }
               
       fetchTweets();
-      // fetchFlicks();
+      fetchFlicks();
       
       // window.setInterval(showNext, 7000, '#tweets')
       // window.setInterval(showNext, 4000, '#flickr')
@@ -65,6 +65,7 @@
           complete: function() { moveit(element) }});
       }
       moveit('#tweets');
+      moveit('#flickr');
       
     });  
   </script>
@@ -74,7 +75,7 @@
       font-size: 2em;
       background-color: #000;
       color: #CCC;
-      width: 100;
+      width: 100%;
     }
     header {
       top: 0;
@@ -97,13 +98,13 @@
       top: 100px;
       bottom: 0px;
       left: 0px;
-      right: 50%;
+      width: 70%;
     }
     #flickr-wrapper {
       left: 50%;
       right: 0;
     }
-    #tweets {
+    #tweets, #flickr {
       position: relative;
     }
     #tweets li, #flickr li {
