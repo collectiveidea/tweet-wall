@@ -35,10 +35,9 @@
     $(document).ready( function () {
       query = encodeURIComponent('techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time" -pella');
       
-
-      // since_id
-      var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
       function fetchTweets() {
+        // since_id
+        var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
         if ($('#tweets li:hidden').size() < 10) {
           $.getJSON(url, function(data) {
             $.each(data.results, function() {                            
@@ -52,9 +51,8 @@
       function fetchFlicks() {
         if ($('#flickr li:hidden').size() < 10) {
         $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&jsoncallback=?jsonFlickrApi")
-          window.setTimeout(fetchFlicks, 120000);
         }
-        
+        window.setTimeout(fetchFlicks, 120000);        
       }
               
       fetchTweets();
@@ -105,6 +103,7 @@
     }
     #flickr li {
       text-align: center;
+      margin-bottom: .5em;
     }
         
     #tweets li .profile {
@@ -124,6 +123,20 @@
     #flickr-logo, #flickr img {
       border: 5px solid #fff;
     }
+    footer {
+      display:block;
+      position:fixed;
+      bottom: 0;
+      width: 100%;
+      font-size: 8pt;
+      text-align: center;
+      margin-top: .25em;
+      background: black;
+      }
+      footer a {
+        color: #fff;
+        text-decoration: none;
+      }
   </style>
 </head>
 <body>  
@@ -133,5 +146,9 @@
   
   <ul id="flickr"></ul>
   <ul id="tweets"></ul>
+  
+  <footer>
+    Developed by <a href="http://collectiveidea.com">[i] Collective Idea http://collectiveidea.com</a>.
+  </footer>
 </body>
 </html>
