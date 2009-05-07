@@ -14,42 +14,42 @@
     $('li:hidden:last', container).slideDown('slow');
   }
 
-    $(document).ready( function () {
-      query = encodeURIComponent('techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time" -pella');
-      
-      function fetchTweets() {
-        // since_id
-        var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
-        if ($('#tweets li:hidden').size() < 10) {          
-          $.getJSON(url, function(data) {
-            $.each(data.results, function() {                            
-              push($('#tweets'), $('<li style="display: none"><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'));
-             }); 
-           });
-        }
-        window.setTimeout(fetchTweets, 60000);
-      }
-      
-      function fetchFlicks() {
-        if ($('#flickr li:hidden').size() < 10) {        $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&nojsoncallback=?jsonFlickrApi", function(data) {
-            $.each(data.photos.photo, function(i,photo){
-              //notice that "t.jpg" is where you change the
-              //size of the image
-              var t_url = "http://farm" + photo.farm + 
-              ".static.flickr.com/" + photo.server + "/" + 
-              photo.id + "_" + photo.secret + "_" + "m.jpg";
+  function fetchFlicks() {
+    if ($('#flickr li:hidden').size() < 10) {    
+          $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&nojsoncallback=?jsonFlickrApi", function(data) {
+        $.each(data.photos.photo, function(i,photo){
+          //notice that "t.jpg" is where you change the
+          //size of the image
+          var t_url = "http://farm" + photo.farm + 
+          ".static.flickr.com/" + photo.server + "/" + 
+          photo.id + "_" + photo.secret + "_" + "m.jpg";
 
-              var p_url = "http://www.flickr.com/photos/" + 
-              photo.owner + "/" + photo.id;
+          var p_url = "http://www.flickr.com/photos/" + 
+          photo.owner + "/" + photo.id;
 
-              push($('#flickr'), $("<img/>").attr("src", t_url).attr("class", 'flickr'))
-                .wrap("<li style='display: none'><a href='" + p_url + "'></a></li>");
-            });
-          })
-        }
-        window.setTimeout(fetchFlicks, 120000);        
-      }
-              
+          push($('#flickr'), $("<img/>").attr("src", t_url).attr("class", 'flickr'))
+            .wrap("<li style='display: none'><a href='" + p_url + "'></a></li>");
+        });
+      })
+    }
+    window.setTimeout(fetchFlicks, 120000);        
+  }
+    
+  function fetchTweets() {
+    // since_id
+    var query = encodeURIComponent('techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time" -pella');
+    var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
+    if ($('#tweets li:hidden').size() < 10) {          
+      $.getJSON(url, function(data) {
+        $.each(data.results, function() {                            
+          push($('#tweets'), $('<li style="display: none"><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'));
+         }); 
+       });
+    }
+    window.setTimeout(fetchTweets, 60000);
+  }
+
+    $(document).ready( function () {        
       fetchTweets();
       fetchFlicks();
       
