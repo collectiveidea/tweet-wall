@@ -36,7 +36,7 @@
       
       function fetchTweets() {
         // since_id
-        var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
+        var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=3&callback=?'; 
         if ($('#tweets li:hidden').size() < 10) {
           $.getJSON(url, function(data) {
             $.each(data.results, function() {                            
@@ -49,7 +49,7 @@
       
       function fetchFlicks() {
         if ($('#flickr li:hidden').size() < 10) {
-        $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&jsoncallback=?jsonFlickrApi")
+        $.getJSON("http://api.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&jsoncallback=jsonFlickrApi")
         }
         window.setTimeout(fetchFlicks, 120000);        
       }
