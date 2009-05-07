@@ -33,14 +33,13 @@
   }
 
     $(document).ready( function () {
-    console.log('ready')
       query = encodeURIComponent('techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time" -pella');
       
 
       // since_id
       var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
       function fetchTweets() {
-        if ($('#tweets').size() < 10) {
+        if ($('#tweets li:hidden').size() < 10) {
           $.getJSON(url, function(data) {
             $.each(data.results, function() {                            
               push($('#tweets'), $('<li style="display: none"><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'));
@@ -49,8 +48,17 @@
         }
         window.setTimeout(fetchTweets, 60000);
       }
+      
+      function fetchFlicks() {
+        if ($('#flickr li:hidden').size() < 10) {
+        $.getJSON("http://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&jsoncallback=?jsonFlickrApi")
+          window.setTimeout(fetchFlicks, 120000);
+        }
+        
+      }
               
       fetchTweets();
+      fetchFlicks();
       
       window.setInterval(showNext, 7000, '#tweets')
       window.setInterval(showNext, 4000, '#flickr')
@@ -63,6 +71,7 @@
       font-size: 2em;
       background-color: #000;
       color: #CCC;
+      width: 100;
     }
     header {
       top: 0;
@@ -79,24 +88,28 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      width: 100%;
       overflow: hidden;
     }    
     #flickr {
-      border: 1px solid green;
       float: right;
-      width: 20%%;
+      margin-right: 1em;
     }
     #tweets li, #flickr li {
       overflow: hidden;
       margin-bottom: 1em;
-      padding-left: 100px;
       color: #fff;
     }
-    
+    #tweets li {
+      padding-left: 100px;
+      padding-right: 20px;
+    }
+    #flickr li {
+      text-align: center;
+    }
+        
     #tweets li .profile {
       position: absolute;
-      left: 50px;
+      left: 20px;
       border: 3px solid #555;
       margin-top: 20px;
       width: 50px;
@@ -108,16 +121,17 @@
       font-size: 0.5em;
       display: block;
     }
+    #flickr-logo, #flickr img {
+      border: 5px solid #fff;
+    }
   </style>
 </head>
 <body>  
   <header>
-    <h1>Tech Embassy &amp; Tulip Time on <img src="http://assets0.twitter.com/images/twitter_logo_header.png" alt="Twitter"></h1>
+    <h1>Tech Embassy &amp; Tulip Time on <img src="http://assets0.twitter.com/images/twitter_logo_header.png" alt="Twitter"> &amp <img src="http://l.yimg.com/g/images/flickr_logo_gamma.gif.v59899.14" alt="Flickr" id="flickr-logo"></h1>
   </header>
   
   <ul id="flickr"></ul>
   <ul id="tweets"></ul>
-  
-  <script src="http://api.flickr.com/services/rest/?format=json&amp;method=flickr.photos.search&amp;text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&amp;tag_mode=all&amp;api_key=f9eed8709bd8c9663f988960cbdad53f&"></script>
 </body>
 </html>
