@@ -19,7 +19,7 @@
       
       function fetchTweets() {
         // since_id
-        var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=3&callback=?'; 
+        var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
         if ($('#tweets li:hidden').size() < 10) {          
           $.getJSON(url, function(data) {
             $.each(data.results, function() {                            
