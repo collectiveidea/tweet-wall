@@ -4,162 +4,16 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>Tech Embassy</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-  <script>
-  function push(container, item) {
-    container.append($(item));
-    return $(item);
-  }
-
-
-  function jsonFlickrApi(data) {
-    $.each(data.photos.photo, function(i,photo){
-      //notice that "t.jpg" is where you change the
-      //size of the image
-      var t_url = "http://farm" + photo.farm + 
-      ".static.flickr.com/" + photo.server + "/" + 
-      photo.id + "_" + photo.secret + "_" + "m.jpg";
-
-      var p_url = "http://www.flickr.com/photos/" + 
-      photo.owner + "/" + photo.id;
-
-      push($('#flickr'), $("<img/>").attr("src", t_url).attr("class", 'flickr'))
-        .wrap("<li><a href='" + p_url + "'></a></li>");
-    });
-  }
-  
-  // function showNext(container) {
-  //   $('li:hidden:last', container).slideDown('slow');
-  // }
-
-    $(document).ready( function () {
-      query = encodeURIComponent('techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time" -pella');
-      
-      function fetchTweets() {
-        // since_id
-        var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=50&callback=?'; 
-        if ($('#tweets li:hidden').size() < 10) {
-          $.getJSON(url, function(data) {
-            $.each(data.results, function() {                            
-              push($('#tweets'), $('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'));
-             }); 
-           });
-        }
-        // window.setTimeout(fetchTweets, 60000);
-      }
-      
-      function fetchFlicks() {
-        if ($('#flickr li:hidden').size() < 10) {
-        $.getJSON("http://api.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&jsoncallback=jsonFlickrApi")
-        }
-        // window.setTimeout(fetchFlicks, 120000);        
-      }
-              
-      fetchTweets();
-      // fetchFlicks();
-      
-      // window.setInterval(showNext, 7000, '#tweets')
-      // window.setInterval(showNext, 4000, '#flickr')
-      function moveit(element) {
-        var top = $(element).position().top - 100;
-        $(element).animate({top: top + 'px'}, {duration:5000, easing:'linear',
-          complete: function() { moveit(element) }});
-      }
-      moveit('#tweets');
-      
-    });  
-  </script>
-  <style>
-    body {
-      font-family: Helvetica;
-      font-size: 2em;
-      background-color: #000;
-      color: #CCC;
-      width: 100;
-    }
-    header {
-      top: 0;
-      width: 100%;
-      color: orange;
-      text-align: center;
-      }
-      header h1 {
-        font-size: 30pt;
-      }
-    
-    #flickr, #tweets {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    #tweet-wrapper, #flickr-wrapper {
-      overflow: hidden;
-      position: fixed;
-      top: 100px;
-      bottom: 0px;
-      left: 0px;
-      right: 50%;
-    }
-    #flickr-wrapper {
-      left: 50%;
-      right: 0;
-    }
-    #tweets {
-      position: relative;
-    }
-    #tweets li, #flickr li {
-      overflow: hidden;
-      margin-bottom: 1em;
-      color: #fff;
-    }
-    #tweets li {
-      padding-left: 100px;
-      padding-right: 20px;
-    }
-    #flickr li {
-      text-align: center;
-      margin-bottom: .5em;
-    }
-        
-    #tweets li .profile {
-      position: absolute;
-      left: 20px;
-      border: 3px solid #555;
-      margin-top: 20px;
-      width: 50px;
-      height: 50px;
-    }
-    #tweets li .from {
-      color: orange;
-      font-weight: bold;
-      font-size: 0.5em;
-      display: block;
-    }
-    #flickr-logo, #flickr img {
-      border: 5px solid #fff;
-    }
-    footer {
-      display:block;
-      position:fixed;
-      bottom: 0;
-      width: 100%;
-      font-size: 8pt;
-      text-align: center;
-      margin-top: .25em;
-      background: black;
-      }
-      footer a {
-        color: #fff;
-        text-decoration: none;
-      }
-  </style>
+  <script src="javascripts/tweetwall.js"></script>
+  <link rel="stylesheet" type="text/css" href="stylesheets/tweetwall.css">
 </head>
 <body>  
   <header>
     <h1>Tech Embassy &amp; Tulip Time on <img src="http://assets0.twitter.com/images/twitter_logo_header.png" alt="Twitter"> &amp; <img src="http://l.yimg.com/g/images/flickr_logo_gamma.gif.v59899.14" alt="Flickr" id="flickr-logo"></h1>
   </header>
   
-  <div id="flickr-wrapper"><ul id="flickr"></ul></div>
-  <div id="tweet-wrapper"><ul id="tweets"></ul></div>
+  <ul id="flickr"></ul>
+  <ul id="tweets"></ul>
   
   <footer>
     Developed by <a href="http://collectiveidea.com">[i] Collective Idea http://collectiveidea.com</a>.
