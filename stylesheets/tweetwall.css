@@ -12,7 +12,10 @@ header {
   width: 100%;
   color: orange;
   text-align: center;
-  z-index: 10;
+  z-index: 5;
+  background: #000;
+  position: relative;
+  display: block;
   }
   header h1 {
     font-size: 30pt;

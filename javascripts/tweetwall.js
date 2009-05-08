@@ -25,7 +25,7 @@
     return list;
   }
   
-  var query = encodeURIComponent('techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time" -pella');
+  var query = encodeURIComponent('techembassy OR "tech embassy" OR ideafoundry OR Tulip_time OR "Tulip Time" -pella -iowa');
   
   $(function() {
     tweets = $('#tweets').scroller();
