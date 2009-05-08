@@ -16,7 +16,6 @@ header {
   background: #000;
   position: fixed;
   display: block;
-/*  height: 1.5em;*/
   }
   header h1 {
     font-size: 30pt;
@@ -86,5 +85,6 @@ footer {
   }
   
 .highlight {
+  color: magenta;
   font-weight: bold;
 }

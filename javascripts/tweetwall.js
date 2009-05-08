@@ -55,7 +55,7 @@
         var p_url = "http://www.flickr.com/photos/" + 
         photo.owner + "/" + photo.id;
 
-        flicks.push($("<img/>").attr("src", t_url).attr("class", 'flickr').wrap("<li><a href='" + p_url + "'></a></li>"));
+        flicks.push($('<li><a href="' + p_url + '"><img src="' + t_url + '"/></a></li>'));
       });
     }
     function fetchFlicks() {
