@@ -12,6 +12,7 @@ header {
   width: 100%;
   color: orange;
   text-align: center;
+  z-index: 10;
   }
   header h1 {
     font-size: 30pt;
@@ -79,3 +80,7 @@ footer {
     color: #fff;
     text-decoration: none;
   }
+  
+.highlight {
+  font-weight: bold;
+}
