@@ -14,8 +14,9 @@ header {
   text-align: center;
   z-index: 5;
   background: #000;
-  position: relative;
+  position: fixed;
   display: block;
+/*  height: 1.5em;*/
   }
   header h1 {
     font-size: 30pt;
