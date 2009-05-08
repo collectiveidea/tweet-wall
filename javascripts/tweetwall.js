@@ -32,15 +32,16 @@
     flicks = $('#flickr').scroller();
     
     function fetchTweets() {
-      if(tweets.items.length > 15) return;
-      // since_id
-      var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
-      $.getJSON(url, function(data) {
-        $.each(data.results, function() {  
-          tweets.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'))
-         }); 
-       });
-      setTimeout(fetchTweets, 60000);
+      if(tweets.items.length < 15) {
+        // since_id
+        var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
+        $.getJSON(url, function(data) {
+          $.each(data.results, function() {  
+            tweets.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'))
+           }); 
+         });
+      }
+      setTimeout(fetchTweets, 5000);
     }
     
     jsonFlickrApi = function(data) {
@@ -58,8 +59,9 @@
       });
     }
     function fetchFlicks() {
-      if (flicks.items.length > 10) return;
-        $.getJSON("http://api.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&jsoncallback=jsonFlickrApi")
+      if (flicks.items.length < 15) {
+          $.getJSON("http://api.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&jsoncallback=jsonFlickrApi")
+      }
       window.setTimeout(fetchFlicks, 120000);        
     }
             
