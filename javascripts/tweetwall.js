@@ -4,7 +4,7 @@
     list.items = [];
     
     list.push = function(items) {
-      items.css('display', 'none').highlight('tulip time').highlight('tuliptime').highlight('tulip_time').highlight('tech embassy')highlight('techembassy');
+      items.css('display', 'none').highlight('tulip time').highlight('tuliptime').highlight('tulip_time').highlight('tech embassy').highlight('techembassy');
       items.each(function() {
         list.items.push(this);
       })
