@@ -37,7 +37,7 @@
         var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
         $.getJSON(url, function(data) {
           $.each(data.results, function() {  
-            tweets.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text + '</li>'))
+            tweets.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text.replace(/http:\/\/twitpic\.com\/([\w\d]+)/, '<img src="http://twitpic.com/show/thumb/$1" class="twitpic">') + '</li>'))
            }); 
          });
       }
