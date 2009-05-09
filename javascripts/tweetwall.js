@@ -37,7 +37,7 @@
         var url = 'http://search.twitter.com/search.json?q=' + query + '&rpp=30&callback=?'; 
         $.getJSON(url, function(data) {
           $.each(data.results, function() {  
-            tweets.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + this.text.replace(/http:\/\/twitpic\.com\/([\w\d]+)/, '<img src="http://twitpic.com/show/thumb/$1" class="twitpic">') + '</li>'))
+            tweets.push($('<li><img class="profile" src="' + this.profile_image_url + '"/><span class="from">' + this.from_user + ':</span> ' + inlinePics(this.text) + '</li>'))
            }); 
          });
       }
@@ -63,6 +63,14 @@
           $.getJSON("http://api.flickr.com/services/rest/?callback=?&format=json&method=flickr.photos.search&text=%22tulip%20time%22%20OR%20%22tech%20embassy%22&tag_mode=all&api_key=f9eed8709bd8c9663f988960cbdad53f&jsoncallback=jsonFlickrApi")
       }
       window.setTimeout(fetchFlicks, 120000);        
+    }
+         
+    
+    function inlinePics(text) {
+      return text
+        .replace(/http:\/\/twitpic\.com\/([\w\d]+)/, '<img src="http://twitpic.com/show/thumb/$1" class="twitpic">')
+        .replace(/http:\/\/yfrog\.com\/([\w\d]+)/, '<img src="http://yfrog.com/$1.th.jpg" class="twitpic">')
+        .replace(/http:\/\/pic\.im\/([\w\d]+)/, '<img src="http://pic.im/website/thumbnail/$1" class="twitpic">')
     }
             
     fetchTweets();
