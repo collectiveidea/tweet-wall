@@ -1,0 +1,94 @@
+body {
+  font-family: Helvetica;
+  font-size: 2em;
+  background-color: #000;
+  color: #CCC;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+header {
+  top: 0;
+  width: 100%;
+  color: orange;
+  text-align: center;
+  z-index: 5;
+  background: #000;
+  position: fixed;
+  display: block;
+  }
+  header h1 {
+    font-size: 30pt;
+  }
+  
+footer {
+  display:block;
+  position:fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 8pt;
+  text-align: center;
+  margin-top: .25em;
+  background: black;
+  }
+
+#flickr, #tweets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  bottom: 0;
+}
+#tweets {
+  right: 30%;
+  left: 0;
+}
+#flickr {
+  left: 70%;
+  right: 0;
+}
+#tweets li, #flickr li {
+  overflow: hidden;
+  margin-bottom: 1em;
+  color: #fff;
+}
+#tweets li {
+  padding-left: 100px;
+  padding-right: 20px;
+  clear: left;
+}
+#tweets li .profile {
+  position: absolute;
+  left: 20px;
+  border: 3px solid #555;
+  margin-top: 20px;
+  width: 50px;
+  height: 50px;
+}
+#tweets li .from {
+  color: orange;
+  font-weight: bold;
+  font-size: 0.5em;
+  display: block;
+}
+#tweets .twitpic {
+  float: right;
+}
+
+#flickr li {
+  text-align: center;
+  margin-bottom: .5em;
+}
+    
+#flickr-logo, #flickr img, .twitpic {
+  border: 5px solid #fff;
+}
+  footer a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+.highlight {
+  color: #33CCFF;
+  font-weight: bold;
+}
